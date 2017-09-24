@@ -1,16 +1,16 @@
 import * as SRD from '../../../src/main';
-import createCustomNodeModel from './CustomNodeModel';
+import CustomNodeModel from './CustomNodeModel';
 import { CustomPortModel } from './CustomPortModel';
 
-
 export class CustomNodeFactory extends SRD.AbstractInstanceFactory {
-  constructor() {
+  constructor(name, nodeNumber) {
     super('CustomNodeModel');
+    this.name = name;
+    this.nodeNumber = nodeNumber;
   }
   
   getInstance() {
-    const CustomNodeModel = createCustomNodeModel('Diamond', 4);
-    return new CustomNodeModel();
+    return new CustomNodeModel(this.name, this.nodeNumber);
   }
 }
 

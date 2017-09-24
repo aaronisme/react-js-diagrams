@@ -5,6 +5,13 @@ import CustomNodeElement from './customNode/CustomNodeElement';
 import { enhancedDiamondWidget, enhancedCircleWidget } from './components';
 import '../test.scss';
 
+/**
+ *
+ * Demo showing the implementation of a custom node widget
+ * user can define the widget them self by adding an presentational react component
+ * and define the custom behavior with an self-defined HOC.
+ */
+
 const diamondElement = new CustomNodeElement('Diamond', enhancedDiamondWidget, 4);
 const circleElement = new CustomNodeElement('Circle', enhancedCircleWidget, 4);
 

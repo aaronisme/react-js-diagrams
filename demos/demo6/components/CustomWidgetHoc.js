@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-export const withCustomStyle = (WrappedComponent, size, style) => {
+export const withCustomStyle = (WrappedComponent, size, widgetStyle) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
     }
     
     render() {
-      return <WrappedComponent size={size} style={style} {...this.props} />;
+      return <WrappedComponent size={size} widgetStyle={widgetStyle} {...this.props} />;
     }
   };
 };

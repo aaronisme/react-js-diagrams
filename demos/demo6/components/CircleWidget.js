@@ -5,13 +5,13 @@ const defaultStyle = {
   color: 'blue'
 };
 
-const CircleWidget = ({ size = 100, style = defaultStyle, node }) => {
+const CircleWidget = ({ size = 100, widgetStyle = defaultStyle, node }) => {
   return (
     <div className="circle-node" style={{position: 'relative', width: size, height: size}}>
       <svg width={size} height={size}>
         <g id="Layer_1"/>
         <g id="Layer_2">
-          <circle fill={style.color}
+          <circle fill={widgetStyle.color}
                   cx={ size / 2 }
                   cy={ size / 2}
                   r ={ size / 2 - 1}

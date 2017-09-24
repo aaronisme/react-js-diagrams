@@ -2,6 +2,13 @@ import CustomWidgetFactory from './CustomWidgetFactory';
 import CustomNodeModel from './CustomNodeModel';
 import { CustomNodeFactory, CustomPortFactory } from './CustomInstanceFactories';
 
+/**
+ *
+ * create an CustomNodeElement class which generate needed factory and model.
+ *
+ *
+ */
+
 export default class CustomNodeElement {
   constructor(name, Component, nodeNumber){
     this.name = name;

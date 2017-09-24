@@ -2,6 +2,13 @@ import DiamondWidget from './DiamonWidget';
 import CircleWidget from './CircleWidget';
 import { withCustomStyle, withCustomClick } from './CustomWidgetHoc';
 
+/**
+ *
+ * define the custom node widget presentational react component in the this folder
+ * and define your custom behavior with an HOC and enhance the presentational component
+ *
+ */
+
 const diamondStyle = {
   color: 'yellow',
   stroke: '#000000',

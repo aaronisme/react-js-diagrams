@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as RJD from '../../src/main';
-import createCustomNodeBy from './lib/createCustomNode';
-import DiamondWidget from './components/DiamonWidget';
+import CustomNodeElement from './customNode/CustomNodeElement';
+import { enhancedDiamondWidget, enhancedCircleWidget } from './components';
 import '../test.scss';
 
-  
-const { WidgetFactory, NodeModel, NodeFactory, PortFactory } = createCustomNodeBy(DiamondWidget, 'Diamond')
+const diamondElement = new CustomNodeElement('Diamond', enhancedDiamondWidget, 4);
+const circleElement = new CustomNodeElement('Circle', enhancedCircleWidget, 4);
 
 class Demo6 extends React.Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class Demo6 extends React.Component {
     this.engine = new RJD.DiagramEngine();
     this.engine.registerNodeFactory(new RJD.DefaultNodeFactory());
     this.engine.registerLinkFactory(new RJD.DefaultLinkFactory());
-    this.engine.registerNodeFactory(new WidgetFactory());
+    this.engine.registerNodeFactory(diamondElement.getWidgetFactory());
+    this.engine.registerNodeFactory(circleElement.getWidgetFactory());
     
     // Setup the diagram model
     this.model = new RJD.DiagramModel();
@@ -55,8 +56,10 @@ class Demo6 extends React.Component {
     engine.registerInstanceFactory(new RJD.DefaultNodeInstanceFactory());
     engine.registerInstanceFactory(new RJD.DefaultPortInstanceFactory());
     engine.registerInstanceFactory(new RJD.LinkInstanceFactory());
-    engine.registerInstanceFactory(new NodeFactory());
-    engine.registerInstanceFactory(new PortFactory());
+    engine.registerInstanceFactory(diamondElement.getNodeFactory());
+    engine.registerInstanceFactory(diamondElement.getPortFactory());
+    engine.registerInstanceFactory(circleElement.getPortFactory());
+    engine.registerInstanceFactory(circleElement.getPortFactory());
     
     // Serialize the model
     const str = JSON.stringify(model.serializeDiagram());
@@ -86,9 +89,14 @@ class Demo6 extends React.Component {
     });
     
     // Create the diamond node
-    const diamondNode = new NodeModel();
-    diamondNode.x = 400;
+    const diamondNode = diamondElement.getNodeModel();
+    diamondNode.x = 300;
     diamondNode.y = 100;
+    
+    // create the circle node
+    const circleNode = circleElement.getNodeModel();
+    circleNode.x = 600;
+    circleNode.y = 120;
     
     // Create second node and port
     const node2 = this.createNode({
@@ -106,9 +114,11 @@ class Demo6 extends React.Component {
     // Add the nodes and link to the model
     model.addNode(node1);
     model.addNode(diamondNode);
+    model.addNode(circleNode);
     model.addNode(node2);
     model.addLink(this.linkNodes(port1, diamondNode.ports['node-1']));
-    model.addLink(this.linkNodes(diamondNode.ports['node-3'], port2));
+    model.addLink(this.linkNodes(diamondNode.ports['node-3'], circleNode.ports['node-1']));
+    model.addLink(this.linkNodes(circleNode.ports['node-2'], port2));
     
     // Load the model into the diagram engine
     engine.setDiagramModel(model);

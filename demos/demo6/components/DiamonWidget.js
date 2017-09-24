@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as SRD from '../../../src/main';
 
-const DiamondWidget = ({size = 150, node}) => {
+const DiamondWidget = ({ size = 150, color='blue', node }) => {
   return (
     <div className="diamond-node" style={{position: 'relative', width: size, height: size}}>
       <svg width={size} height={size}>
         <g id="Layer_1"/>
         <g id="Layer_2">
-          <polygon fill="cyan" stroke="#000000" strokeWidth="3" strokeMiterlimit="10"
+          <polygon fill={color} stroke="#000000" strokeWidth="3" strokeMiterlimit="10"
                    points={`10,${size / 2} ${size / 2},10 ${size - 10},${size / 2} ${size / 2},${size - 10}`}/>
         </g>
       </svg>
@@ -27,4 +27,4 @@ const DiamondWidget = ({size = 150, node}) => {
   )
 };
 
-export  default DiamondWidget
+export default DiamondWidget

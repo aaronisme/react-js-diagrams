@@ -1,13 +1,21 @@
 import * as React from 'react';
 import * as SRD from '../../../src/main';
 
-const DiamondWidget = ({ size = 150, color='blue', node }) => {
+const defaultStyle = {
+  color: 'blue',
+  stroke: '#000000',
+  strokeWidth: 3,
+  strokeMiterlimit: 10,
+};
+
+
+const DiamondWidget = ({ size = 150, style=defaultStyle, node }) => {
   return (
     <div className="diamond-node" style={{position: 'relative', width: size, height: size}}>
       <svg width={size} height={size}>
         <g id="Layer_1"/>
         <g id="Layer_2">
-          <polygon fill={color} stroke="#000000" strokeWidth="3" strokeMiterlimit="10"
+          <polygon fill={style.color} stroke={style.stroke} strokeWidth={style.strokeWidth} strokeMiterlimit={style.strokeMiterlimit}
                    points={`10,${size / 2} ${size / 2},10 ${size - 10},${size / 2} ${size / 2},${size - 10}`}/>
         </g>
       </svg>

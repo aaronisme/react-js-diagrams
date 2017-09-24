@@ -14,6 +14,15 @@ const circleStyle = {
 };
 
 
-export const enhancedDiamondWidget = withCustomClick(withCustomStyle(DiamondWidget, 200, diamondStyle));
-export const enhancedCircleWidget = withCustomClick(withCustomStyle(CircleWidget, 100, circleStyle));
+export const enhancedDiamondWidget =
+  withCustomClick(
+    withCustomStyle(DiamondWidget, 200, diamondStyle),
+    () => console.log('this is the custom click on DiamondWidget')
+  );
+
+export const enhancedCircleWidget =
+  withCustomClick(
+    withCustomStyle(CircleWidget, 100, circleStyle),
+    () => console.log('this is the custom click on CircleWidget')
+  );
 

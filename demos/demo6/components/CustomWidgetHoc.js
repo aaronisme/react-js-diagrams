@@ -12,7 +12,7 @@ export const withCustomStyle = (WrappedComponent, size, style) => {
   };
 };
 
-export const withCustomClick = (WrappedComponent) => {
+export const withCustomClick = (WrappedComponent, func = () => {}) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -20,7 +20,7 @@ export const withCustomClick = (WrappedComponent) => {
     }
     
     onClick() {
-      console.log('this is the custom click function')
+      func();
     }
     
     render() {

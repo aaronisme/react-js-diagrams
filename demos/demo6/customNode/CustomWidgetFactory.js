@@ -4,11 +4,11 @@ import * as SRD from '../../../src/main';
 class CustomWidgetFactory extends SRD.NodeWidgetFactory {
   constructor(name, Component) {
     super(name);
-    this.Component = Component;
+    this.reactComponent = Component;
   }
   
   generateReactWidget(diagramEngine, node) {
-    const CustomNodeWidgetFactory = React.createFactory(this.Component);
+    const CustomNodeWidgetFactory = React.createFactory(this.reactComponent);
     return CustomNodeWidgetFactory({ node })
   }
 }
